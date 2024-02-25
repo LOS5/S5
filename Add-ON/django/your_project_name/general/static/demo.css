@@ -1,0 +1,41 @@
+/* demo.css */
+
+/* Apply basic styles to the body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style links */
+a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #eee;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+a:hover {
+    background-color: #ddd;
+}
+
+/* Center the links */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Add some spacing between links */
+a + a {
+    margin-top: 10px;
+}

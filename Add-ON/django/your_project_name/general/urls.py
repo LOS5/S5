@@ -7,16 +7,19 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
-from .views import HomePageView, CreateFeedbackView, RegisterView
+from .views import HomePageView, CreateFeedbackView, CreateLoginView, CreateRegisterView, DemoPageView, RegisterPageView
+
 
 from general.views import HomePageView,CreateFeedbackView
 
 urlpatterns = [
     path('home/', HomePageView.as_view(),name='index_page'),
     path('feedback/', CreateFeedbackView.as_view(),name='feedback_page'),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', CreateLoginView.as_view(), name='login_page'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('register/', RegisterView.as_view(), name='register')
+    path('register/', CreateRegisterView.as_view(), name='register'),
+    path('demo/', DemoPageView.as_view(),name='demo_page'),
+    path('register/', RegisterPageView.as_view(), name='register_page')
 ]+ static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

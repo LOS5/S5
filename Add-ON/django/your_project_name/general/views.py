@@ -1,16 +1,10 @@
 from django.shortcuts import render
-from django.contrib.auth import login
-
-
-# Do it #3
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import TemplateView,CreateView
+from django.views.generic import TemplateView, CreateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserCreationForm
 
-from general.models import FeedbackModel
-from general.forms import FeedbackForm
-
+from general.models import FeedbackModel, LoginModel
+from general.forms import FeedbackForm, LoginForm
 
 
 # Create your views here.
@@ -21,17 +15,26 @@ class CreateFeedbackView(CreateView):
     form_class= FeedbackForm
     success_url = '/gen/home'
 
+class CreateLoginView(CreateView):
+    template_name= 'login.html'
+    model= LoginModel
+    form_class= LoginForm
+    success_url = '/gen/home'
+
 class HomePageView(TemplateView):
     template_name='index.html'
 # Till here #10
 
-class RegisterView(CreateView):
+class CreateRegisterView(CreateView):
     template_name = 'register.html'
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        # Automatically log in the user after successful registration
-        login(self.request, self.object)
-        return response
+class DemoPageView(TemplateView):
+    template_name='demo.html'
+# Till here #10
+
+class RegisterPageView(CreateView):
+    template_name = 'register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')

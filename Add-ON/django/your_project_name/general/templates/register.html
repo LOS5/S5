@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'register.css' %}">
     <title>Register</title>
 </head>
 <body>
     <h2>Register</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        
+        <!-- Username -->
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+        <br>
+
+        <!-- Email -->
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        <br>
+
+        <!-- Password -->
+        <label for="id_password1">Password:</label>
+        {{ form.password1 }}
+        <br>
+
+        <!-- Confirm Password -->
+        <label for="id_password2">Confirm Password:</label>
+        {{ form.password2 }}
+        <br>
+
         <button type="submit">Register</button>
     </form>
 </body>
